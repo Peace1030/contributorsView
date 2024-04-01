@@ -18,7 +18,7 @@ export default function Home() {
 	const fetchMoreRepos = async () => {
 		const newRepos = await getRepos(username, page);
 		setRepos([...repos, ...newRepos]);
-		setPage(page + 1);
+		setPage((prevPage) => prevPage + 1);
 		if (newRepos.length === 0) {
 			setHasMore(false);
 			if (repos.length === 0) setDesc("There is no repositories for the user.");

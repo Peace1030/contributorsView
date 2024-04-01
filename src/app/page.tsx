@@ -18,7 +18,7 @@ const Home: React.FC = () => {
 	const fetchMoreContributors = async () => {
 		const newContributors = await getContributors(page);
 		setContributors([...contributors, ...newContributors]);
-		setPage(page + 1);
+		setPage((prevPage) => prevPage + 1);
 		if (newContributors.length === 0) {
 			setHasMore(false);
 			if (contributors.length === 0)
@@ -36,8 +36,8 @@ const Home: React.FC = () => {
 			<InfiniteScroll
 				dataLength={contributors.length}
 				next={fetchMoreContributors}
-				hasMore={true}
-				loader={<Skeleton height="50px" />}
+				hasMore={hasMore}
+				loader={hasMore && <Skeleton height="50px" />}
 				style={{ overflow: "hidden", paddingTop: "30px" }}>
 				<Grid
 					templateColumns={{

@@ -138,7 +138,7 @@ export const getRepos = async (username: string, page: number) => {
 		const result = await axios.get(
 			`https://api.github.com/users/${username}/repos`,
 			{
-				params: { page, per_page: 10, sort: "updated" },
+				params: { page, per_page: 20, sort: "updated" },
 			}
 		);
 		return result.data;
